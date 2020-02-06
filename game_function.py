@@ -16,7 +16,7 @@ def ship_hit(ai_settings, ship, screen, bullets, aliens, stats):
         sleep(0.5)
     else:
         stats.game_active = False
-        pygame.mouse.visible(True)
+        pygame.mouse.set_visible(True)
 
 
 def get_number_aliens_x(ai_settings, alien_width):
@@ -110,8 +110,11 @@ def update_bullets(bullets, aliens, ai_settings, screen, ship):
     check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
 
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets, stats):
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if collisions:
+        stats.score += ai_settings.alien_points * len(aliens)
+
     if len(aliens) == 0:
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
@@ -162,7 +165,7 @@ def update_aliens(ai_settings, aliens, ship, stats, bullets, screen):
     aliens.update()
 
     if pygame.sprite.spritecollideany(ship, aliens):
-        ship_hit(ai_settings, aliens, ship, stats, bullets, screen)
+        ship_hit(ai_settings, ship, screen, bullets, aliens, stats)
         print("Ship hit!!!")
 
     check_aliens_bottom(ai_settings, screen, aliens, stats, ship, bullets)
