@@ -66,12 +66,9 @@ def check_events(ai_settings, ship, screen, bullets, play_button, stats, aliens)
             check_play_button(ai_settings, ship, screen, bullets, play_button, stats, mouse_x, mouse_y, aliens)
 
 
-def check_play_button(
-        ai_settings, ship, screen,
-        bullets, play_button, stats,
-        mouse_x, mouse_y, aliens):
+def check_play_button(ai_settings, ship, screen, bullets, play_button, stats, mouse_x, mouse_y, aliens):
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
-    if button_clicked and not stats.game_actived:
+    if button_clicked and not stats.game_active:
         ai_settings.initialize_dynamic_settings()
         stats.reset_stats()
         stats.game_active = True
@@ -93,14 +90,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_screen(
-        ai_settings,
-        ship,
-        screen,
-        bullets,
-        aliens,
-        stats,
-        play_button):
+def update_screen(ai_settings, ship, screen, bullets, aliens, stats, play_button):
     screen.fill(ai_settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
@@ -134,11 +124,9 @@ def fire_bullet(ai_settings, screen, ship, bullets):
         bullets.add(new_bullet)
 
 
-def create_fleet(ai_settings, screen, aliens, ship):
+def create_fleet(ai_settings, screen, ship, aliens):
     alien = Alien(ai_settings, screen)
-    """alien_width = alien.rect.width
-    avaliable_aliens_x = ai_settings.screen_width - 2 * alien_width
-    """
+
     number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
     number_rows = get_number_rows(
         ai_settings,
@@ -177,4 +165,4 @@ def update_aliens(ai_settings, aliens, ship, stats, bullets, screen):
         ship_hit(ai_settings, aliens, ship, stats, bullets, screen)
         print("Ship hit!!!")
 
-    check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
+    check_aliens_bottom(ai_settings, screen, aliens, stats, ship, bullets)
