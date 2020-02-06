@@ -28,7 +28,7 @@ def run_game():
         gf.check_events(ai_settings, ship, screen, bullets, play_button, stats, aliens)
         if stats.game_active:
             ship.update()
-            gf.update_bullets(bullets, aliens, bullets, ship, ai_settings)
+            gf.update_bullets(bullets, aliens, ai_settings, screen, ship)
             gf.update_aliens(ai_settings, aliens, ship, stats, bullets, screen)
             print(len(bullets))
 

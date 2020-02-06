@@ -125,8 +125,8 @@ def fire_bullet(ai_settings, screen, ship, bullets):
 
 
 def create_fleet(ai_settings, screen, ship, aliens):
-    alien = Alien(ai_settings, screen)
 
+    alien = Alien(ai_settings, screen)
     number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
     number_rows = get_number_rows(
         ai_settings,
