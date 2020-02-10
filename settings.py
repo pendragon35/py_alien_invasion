@@ -5,7 +5,7 @@ class Settings():
         self.screen_height = 600
         self.bg_color = (230, 230, 230)
 
-        self.ship_limit = 3
+        self.ship_limit = 2
 
         self.fleet_drop_speed = 10
         self.fleet_direction = 1
